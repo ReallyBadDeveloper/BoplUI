@@ -3,10 +3,10 @@ using BepInEx;
 using TMPro;
 using UnityEngine;
 
-namespace SimpleUILib
+namespace BoplUI
 {
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-    public class Plugin : BaseUnityPlugin
+    public class BoplUI : BaseUnityPlugin
     {
         internal static Canvas canvas;
         internal static int nextId = 0;
@@ -18,8 +18,7 @@ namespace SimpleUILib
 
         private void Update()
         {
-            // name of canvas is "Canvas (1)" because zapray makes messy gameobjects smh
-            canvas = GameObject.Find("Canvas (1)").GetComponent<Canvas>();
+            Initialize();
             if (nextId == 0) {
                 // Testing time!!!!!!! :realization:
                 new Text("Hello World", new Vector2(0, 0), new Vector2(7, 0.5f), Color.black);
@@ -28,6 +27,12 @@ namespace SimpleUILib
         private void OnSceneLoad()
         {
 
+        }
+        public void Initialize()
+        {
+            // name of canvas is "Canvas (1)" because zapray makes messy gameobjects smh
+            canvas = GameObject.Find("Canvas (1)").GetComponent<Canvas>();
+            nextId = 0;
         }
     }
     public class Text
@@ -45,11 +50,11 @@ namespace SimpleUILib
             this.text = text;
             this.pos = position;
             this.size = size;
-            this.id = Plugin.nextId;
+            this.id = BoplUI.nextId;
             this.color = color;
-            Plugin.nextId++;
+            BoplUI.nextId++;
             gameObject = new GameObject("TEXT_" + this.id.ToString());
-            gameObject.transform.SetParent(Plugin.canvas.transform);
+            gameObject.transform.SetParent(BoplUI.canvas.transform);
             gameObject.transform.position = pos;
             gameObject.AddComponent<TextMeshProUGUI>();
             tmpComponent = gameObject.GetComponent<TextMeshProUGUI>();
@@ -66,6 +71,5 @@ namespace SimpleUILib
             rectTransform.anchoredPosition = pos;
             rectTransform.sizeDelta = this.size;
         }
-
     }
 }

@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net46</TargetFramework>
-    <AssemblyName>SimpleUILib</AssemblyName>
-    <Description>My first plugin</Description>
+    <AssemblyName>BoplUI</AssemblyName>
+    <Description>A small UI library for Bopl Battle</Description>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
